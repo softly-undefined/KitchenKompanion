@@ -1,0 +1,66 @@
+<!-- index.html Created 2/19/26 Eric Bennett -->
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Kitchen Kompanion</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="device">
+            <div id="app">
+                <main id="content"></main>
+
+                <nav id="nav">
+                    <!-- text -->
+                    <button class="tab-btn" data-tab="text">
+                        <img src="assets/icons/text.svg" alt="Text" />
+                        <span>Text</span>
+                    </button>
+
+                    <!-- lr -->
+                    <button class="tab-btn" data-tab="lr">
+                        <img src="assets/icons/lr.svg" alt="LR" />
+                        <span>LR</span>
+                    </button>
+
+                    <!-- colors -->
+                    <button class="tab-btn" data-tab="colors">
+                        <img src="assets/icons/colors.svg" alt="Colors" />
+                        <span>Colors</span>
+                    </button>
+
+                    <!-- profile -->
+                    <button class="tab-btn" data-tab="profile">
+                        <img src="assets/icons/profile.svg" alt="Profile" />
+                        <span>Profile</span>
+                    </button>
+
+                    <!-- choices -->
+                    <button class="tab-btn" data-tab="choices">
+                        <img src="assets/icons/choices.svg" alt="Choices" />
+                        <span>Choices</span>
+                    </button>
+
+                    <!-- todo -->
+                    <button class="tab-btn" data-tab="todo">
+                        <img src="assets/icons/todo.svg" alt="Todo" />
+                        <span>Todo</span>
+                    </button>
+
+                </nav>
+            </div>
+        </div>
+
+        <!-- scripts -->
+        <script src="tabs/text.js"></script>
+        <script src="tabs/lr.js"></script>
+        <script src="tabs/colors.js"></script>
+        <script src="tabs/profile.js"></script>
+        <script src="tabs/choices.js"></script>
+        <script src="tabs/todo.js"></script>
+        <script src="app.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,89 @@
+/* styles.css Created 2/19/26 Eric Bennett */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+}
+
+:root {
+    --device-width: 640px;
+    --device-height: 960px;
+
+    --nav-height: 90px;
+    --app-padding: 16px;
+
+    --device-radius: 28px;
+    --device-border: #cfcfcf;
+}
+
+#device {
+    width: var(--device-width);
+    height: var(--device-height);
+    border-radius: var(--device-radius);
+    border: 1px solid var(--device-border);
+    background-color: #ffffff;
+    overflow: hidden;
+
+    /* helpers to make look better on laptop */
+    transform-origin: center center;
+    transform: scale(min(1, calc((100vw - 24px) / var(--device-width)), calc((100vh - 24px) / var(--device-height))));
+}
+
+#app {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--app-padding);
+}
+
+#nav {
+    height: var(--nav-height);
+    display: flex;
+    align-items: stretch;
+
+    border-top: 1px solid #e9e9e9;
+    background: #ffffff
+}
+
+.tab-btn {
+    flex: 1;
+    border: 0;
+    background: transparent;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+.tab-btn img {
+    width: 28px;
+    height: 28px;
+}
+
+.tab-btn.active {
+    font-weight: 700;
+    background-color: #e9e9e9;
+}
+
+.center {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    justify-content: center;
+}
+
