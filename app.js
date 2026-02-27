@@ -18,6 +18,7 @@
     const renderers = {
         text: () => window.renderTextTab?.(content),
         lr: () => window.renderLRTab?.(content),
+        colors: () => window.renderColorsTab?.(content),
         profile: () => window.renderProfileTab?.(content),
         text: () => window.renderTextTab?.(content),
         todo: () => window.renderTodoTab?.(content),
