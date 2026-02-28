@@ -33,7 +33,7 @@ function showNotification(message) {
     <div class="profile-screen">
         <h1 id="p-title">-User Profile-</h1>
         <div class="profile-img-wrapper">
-            <img src="https://www.cs.umd.edu/class/spring2026/cmsc434/P1_2/SmileyFace.png" alt="P Image" class="p-img">
+            <img src="assets/SmileyFace.png" alt="P Image" class="p-img">
             <h2>Smiley J. Smile</h2>
         </div>
     </div>
