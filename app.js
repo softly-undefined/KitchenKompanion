@@ -22,6 +22,7 @@
         profile: () => window.renderProfileTab?.(content),
         text: () => window.renderTextTab?.(content),
         todo: () => window.renderTodoTab?.(content),
+        choices: () => window.renderChoicesTab?.(content), // Added by Spencer 2/27/2026
     }
 
     function setActiveButton(tabName) {
