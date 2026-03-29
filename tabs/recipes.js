@@ -1,5 +1,5 @@
 //Created by Spencer 2/27/2026
-window.renderChoicesTab = function(content){
+window.renderRecipesTab = function(content){
     content.innerHTML = `
     <div class="choices-screen">
         <h1 id="c-title">-Choices Screen-</h1>

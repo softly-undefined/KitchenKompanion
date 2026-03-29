@@ -16,13 +16,10 @@
     }
 
     const renderers = {
-        text: () => window.renderTextTab?.(content),
-        lr: () => window.renderLRTab?.(content),
-        colors: () => window.renderColorsTab?.(content),
-        profile: () => window.renderProfileTab?.(content),
-        text: () => window.renderTextTab?.(content),
-        todo: () => window.renderTodoTab?.(content),
-        choices: () => window.renderChoicesTab?.(content), // Added by Spencer 2/27/2026
+        home: () => window.renderHomeTab?.(content),
+        mykitchen: () => window.renderMyKitchenTab?.(content),
+        grocerylist: () => window.renderGroceryListTab?.(content),
+        recipes: () => window.renderRecipesTab?.(content), // Added by Spencer 2/27/2026
     }
 
     function setActiveButton(tabName) {
@@ -71,5 +68,5 @@
         });
     });
 
-    renderTab("text");
+    renderTab("home");
 })();

@@ -1,4 +1,4 @@
-window.renderTodoTab = function(content) {
+window.renderGroceryListTab = function(content) {
     const container = document.createElement("div");
     container.style.display = "flex";
     container.style.flexDirection = "column";

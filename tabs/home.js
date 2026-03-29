@@ -1,5 +1,5 @@
 (function () {
-  function renderTextTab(content) {
+  function renderHomeTab(content) {
     if (!content) return;
 
     content.innerHTML = `
@@ -17,5 +17,5 @@
     `;
   }
 
-  window.renderTextTab = renderTextTab;
+  window.renderHomeTab = renderHomeTab;
 })();

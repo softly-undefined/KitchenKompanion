@@ -28,7 +28,7 @@ function showNotification(message) {
  }
  
  
- window.renderProfileTab = function(content){
+ window.renderMyKitchenTab = function(content){
     content.innerHTML = `
     <div class="profile-screen">
         <h1 id="p-title">-User Profile-</h1>
