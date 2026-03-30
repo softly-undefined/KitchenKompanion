@@ -1,0 +1,131 @@
+.kitchen-screen {
+    position: relative;
+    min-height: 100%;
+    box-sizing: border-box;
+    padding: 32px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    color: #2e2e2e;
+    font: 400 16px/1.5 "Inter", sans-serif;
+}
+
+.kitchen-title {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Top controls (they don't do anything yet) */
+.kitchen-controls {
+    display: grid;
+    gap: 10px;
+}
+
+.kitchen-field {
+    box-sizing: border-box;
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 1px solid #ddd6cc;
+    border-radius: 12px;
+    background: #fff;
+    color: #6b6b6b;
+    display: flex;
+    align-items: center;
+}
+
+/* Item Grid */
+.kitchen-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.kitchen-card {
+    box-sizing: border-box;
+    min-height: 88px;
+    padding: 12px;
+    border: 1px solid #ddd6cc;
+    border-radius: 12px;
+    background: #fff;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font: inherit;
+    appearance: none;
+    cursor: pointer;
+}
+
+/* Pop-out view (let's you see the attributes of an item) */
+.kitchen-modal {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(46, 46, 46, 0.2);
+}
+
+.kitchen-modal[hidden] {
+    display: none;
+}
+
+.kitchen-modal-panel {
+    box-sizing: border-box;
+    width: min(100%, 320px);
+    padding: 20px;
+    border: 1px solid #ddd6cc;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.kitchen-modal-title {
+    margin: 0 0 12px;
+    font-size: 22px;
+}
+
+.kitchen-detail-list {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.kitchen-detail-label {
+    display: block;
+    font-size: 14px;
+    color: #6b6b6b;
+}
+
+.kitchen-modal-close {
+    width: 100%;
+    min-height: 44px;
+    border: 0;
+    border-radius: 12px;
+    background: #4caf50;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+/* Add item button */
+.kitchen-add-btn {
+    width: min(100%, 320px);
+    min-height: 56px;
+    margin-top: auto;
+    align-self: center;
+    border-radius: 12px;
+    background: #4caf50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.kitchen-add-icon {
+    font-size: 28px;
+    line-height: 1;
+}
