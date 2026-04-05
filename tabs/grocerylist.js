@@ -1,3 +1,11 @@
+window.groceryListItems = window.groceryListItems || [];
+
+window.addToGroceryList = function(name) {
+    if (!window.groceryListItems.includes(name)) {
+        window.groceryListItems.push(name);
+    }
+};
+
 window.renderGroceryListTab = function(content) {
     const container = document.createElement("div");
     container.style.display = "flex";
@@ -61,9 +69,15 @@ window.renderGroceryListTab = function(content) {
     container.appendChild(list);
     content.appendChild(container);
 
-    function addItem() {
-        const text = input.value.trim();
+    // Pre-populate from shared state
+    window.groceryListItems.forEach(name => addItem(name));
+
+    function addItem(forcedText) {
+        const text = forcedText ?? input.value.trim();
         if (!text) return;
+        if (!forcedText) {
+            if (!window.groceryListItems.includes(text)) window.groceryListItems.push(text);
+        }
 
         const li = document.createElement("li");
         li.style.display = "flex";
@@ -110,6 +124,7 @@ window.renderGroceryListTab = function(content) {
             delBtn.style.color = "#000";
         });
         delBtn.addEventListener("click", () => {
+            window.groceryListItems = window.groceryListItems.filter(n => n !== text);
             list.removeChild(li);
         });
 
