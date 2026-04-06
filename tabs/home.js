@@ -4,8 +4,8 @@ window.renderHomeTab = () => {
 
   content.innerHTML = `
       <div class="home-container">
-          <h1 class="app-header">Kitchen<br>Kompanion</h1>
-          <div class="welcome-sub">Welcome Back ________</div>
+          <h1 class="app-header">Itinerary Information</h1>
+          
 
           <div class="section-wrapper">
               <span class="section-header">Expiring Soon:</span>
