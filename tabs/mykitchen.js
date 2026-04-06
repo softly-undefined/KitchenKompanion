@@ -16,21 +16,6 @@ window.kitchenItems = [
 
 window.renderMyKitchenTab = function (content) {
     const items = window.kitchenItems;
-    // Eric - Hardcoded examples to use for now
-    let items = [
-        { name: "Milk", quantity: "1 carton", added: "March 18, 2026", expires: "April 2, 2026" },
-        { name: "Cheese", quantity: "2 blocks", added: "March 20, 2026", expires: "April 10, 2026" },
-        { name: "Yogurt", quantity: "6 cups", added: "March 24, 2026", expires: "April 5, 2026" },
-        { name: "Eggs", quantity: "12 eggs", added: "March 16, 2026", expires: "April 6, 2026" },
-        { name: "Chicken", quantity: "2 pounds", added: "March 27, 2026", expires: "March 31, 2026" },
-        { name: "Rice", quantity: "1 bag", added: "March 5, 2026", expires: "June 1, 2026" },
-        { name: "Pasta", quantity: "3 boxes", added: "March 8, 2026", expires: "July 15, 2026" },
-        { name: "Bread", quantity: "1 loaf", added: "March 25, 2026", expires: "April 1, 2026" },
-        { name: "Apples", quantity: "8 apples", added: "March 22, 2026", expires: "April 4, 2026" },
-        { name: "Spinach", quantity: "1 bag", added: "March 26, 2026", expires: "March 30, 2026" },
-        { name: "Tomatoes", quantity: "5 tomatoes", added: "March 23, 2026", expires: "April 3, 2026" },
-        { name: "Carrots", quantity: "1 bunch", added: "March 19, 2026", expires: "April 8, 2026" },
-    ];
 
     content.innerHTML = `
         <section class="kitchen-screen">
