@@ -123,6 +123,36 @@
     cursor: pointer;
 }
 
+/* Search input */
+input.kitchen-field {
+    width: 100%;
+    box-sizing: border-box;
+    font: 400 16px/1.5 "Inter", sans-serif;
+    color: #2e2e2e;
+    outline: none;
+}
+
+input.kitchen-field::placeholder {
+    color: #6b6b6b;
+}
+
+input.kitchen-field:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Filter dropdown */
+select.kitchen-field {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    color: #2e2e2e;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b6b6b' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    width: 100%;
+    font: 400 16px/1.5 "Inter", sans-serif;
 input[data-detail] {
     font: inherit;
     width: 100%;

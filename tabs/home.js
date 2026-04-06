@@ -1,46 +1,71 @@
-window.renderHomeTab = function() {
+window.renderHomeTab = () => {
   const content = document.getElementById("content");
   if (!content) return;
 
   content.innerHTML = `
       <div class="home-container">
-          <h1 class="app-header">Kitchen<br>Kompanion</h1>
-          <div class="welcome-sub">Welcome Back ________</div>
+          <h1 class="app-header">Itinerary Information</h1>
+          
 
           <div class="section-wrapper">
               <span class="section-header">Expiring Soon:</span>
               <div id="expiring-list"></div>
-              <button class="primary-button">View All</button>
+              <button class="primary-button" id="view-all-btn">View All</button>
           </div>
 
           <div class="section-wrapper">
               <span class="section-header">Running Low:</span>
               <div id="low-list"></div>
-              <button class="primary-button">Add to Grocery List</button>
+              <button class="primary-button" id="grocery-btn">Add to Grocery List</button>
           </div>
 
           <div class="section-wrapper">
               <span class="section-header">Suggested Recipe:</span>
+              <span class="section-header" style="font-size:26px;font-weight:bold;">Chicken Fried Rice</span>
               <ul class="recipe-meta">
-                  <li>Recipe Name</li>
-                  <li>Uses Ingredients Expiring Soon</li>
+                  <li>Chicken</li>
+                  <li>Rice</li>
+                  <li>Eggs</li>
+                  <li style="color:#d32f2f;">Chicken expires in 2 days!</li>
               </ul>
               <button class="primary-button">Start Cooking</button>
           </div>
       </div>
   `;
 
-  const expiringData = [
-      { text: "Temp (Time Till Expiration)", color: "#d32f2f" }, 
-      { text: "Temp (Time Till Expiration)", color: "#d32f2f" },
-      { text: "Temp (Time Till Expiration)", color: "#F4B400" }  
-  ];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
-  const lowData = [
-      { text: "Temp (Amount Left)", color: "#d32f2f" },
-      { text: "Temp (Amount Left)", color: "#d32f2f" },
-      { text: "Temp (Amount Left)", color: "#F4B400" }
-  ];
+  const expiringData = (window.kitchenItems || [])
+      .map(item => {
+          const exp = new Date(item.expires);
+          const daysLeft = Math.ceil((exp - today) / (1000 * 60 * 60 * 24));
+          return { item, daysLeft };
+      })
+      .filter(({ daysLeft }) => daysLeft <= 7)
+      .sort((a, b) => a.daysLeft - b.daysLeft)
+      .map(({ item, daysLeft }) => {
+          const label = daysLeft < 0
+              ? `${item.name} — Expired ${Math.abs(daysLeft)} day(s) ago`
+              : daysLeft === 0
+                  ? `${item.name} — Expires today`
+                  : `${item.name} — Expires in ${daysLeft} day(s)`;
+          const color = daysLeft <= 2 ? "#d32f2f" : "#F4B400";
+          return { text: label, color };
+      });
+
+  const lowData = (window.kitchenItems || [])
+      .map(item => {
+          const match = item.quantity.match(/^(\d+)/);
+          const count = match ? parseInt(match[1], 10) : null;
+          return { item, count };
+      })
+      .filter(({ count }) => count !== null && count <= 2)
+      .sort((a, b) => a.count - b.count)
+      .map(({ item, count }) => ({
+          text: `${item.name} — Only ${item.quantity} left`,
+          color: count <= 1 ? "#d32f2f" : "#F4B400",
+      }));
 
   const fillList = (data, containerId) => {
       const container = document.getElementById(containerId);
@@ -57,6 +82,19 @@ window.renderHomeTab = function() {
 
   fillList(expiringData, "expiring-list");
   fillList(lowData, "low-list");
+
+  content.querySelector("#view-all-btn").addEventListener("click", () => {
+      document.querySelector('[data-tab="mykitchen"]')?.click();
+  });
+
+  const groceryBtn = content.querySelector("#grocery-btn");
+  groceryBtn.addEventListener("click", () => {
+      lowData.forEach(({ text }) => {
+          const name = text.split(" —")[0].replace("• ", "").trim();
+          window.addToGroceryList?.(name);
+      });
+      document.querySelector('[data-tab="grocerylist"]')?.click();
+  });
 };
 
 document.addEventListener("DOMContentLoaded", window.renderHomeTab);
