@@ -60,6 +60,7 @@
 }
 
 /* Pop-out view (let's you see the attributes of an item) */
+.kitchen-add-modal,
 .kitchen-modal {
     position: absolute;
     inset: 0;
@@ -69,6 +70,7 @@
     background: rgba(46, 46, 46, 0.2);
 }
 
+.kitchen-add-modal[hidden],
 .kitchen-modal[hidden] {
     display: none;
 }
@@ -99,7 +101,18 @@
     color: #6b6b6b;
 }
 
-.kitchen-modal-close {
+.kitchen-modal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.kitchen-modal-add,
+.kitchen-modal-add-cancel,
+.kitchen-modal-close,
+.kitchen-modal-edit,
+.kitchen-modal-confirm,
+.kitchen-modal-cancel,
+.kitchen-modal-delete {
     width: 100%;
     min-height: 44px;
     border: 0;
@@ -140,6 +153,10 @@ select.kitchen-field {
     padding-right: 36px;
     width: 100%;
     font: 400 16px/1.5 "Inter", sans-serif;
+input[data-detail] {
+    font: inherit;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Add item button */
@@ -155,6 +172,9 @@ select.kitchen-field {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    border: none;
+    cursor: pointer;
+    font: inherit;
 }
 
 .kitchen-add-icon {
