@@ -1,15 +1,15 @@
 // Hardcoded examples for my kitchen and inventory info
 window.kitchenItems = [
-    { name: "Milk", quantity: "1 carton", added: "April 1, 2026", expires: "April 8, 2026", category: "Dairy" },
-    { name: "Cheese", quantity: "2 blocks", added: "March 20, 2026", expires: "April 20, 2026", category: "Dairy" },
-    { name: "Eggs", quantity: "12 eggs", added: "March 16, 2026", expires: "April 6, 2026", category: "Dairy" },
-    { name: "Chicken", quantity: "2 pounds", added: "April 3, 2026", expires: "April 7, 2026", category: "Meat" },
-    { name: "Rice", quantity: "1 bag", added: "March 5, 2026", expires: "June 1, 2026", category: "Pantry" },
-    { name: "Pasta", quantity: "3 boxes", added: "March 8, 2026", expires: "July 15, 2026", category: "Pantry" },
-    { name: "Bread", quantity: "1 loaf", added: "April 3, 2026", expires: "April 9, 2026", category: "Pantry" },
-    { name: "Apples", quantity: "8 apples", added: "April 1, 2026", expires: "April 14, 2026", category: "Produce" },
-    { name: "Spinach", quantity: "1 bag", added: "April 4, 2026", expires: "April 10, 2026", category: "Produce" },
-    { name: "Tomatoes", quantity: "5 tomatoes", added: "April 2, 2026", expires: "April 11, 2026", category: "Produce" },
+    { name: "Milk", quantity: "1", unit: "carton", added: "April 1, 2026", expires: "April 8, 2026", category: "Dairy" },
+    { name: "Cheese", quantity: "2", unit: "blocks", added: "March 20, 2026", expires: "April 20, 2026", category: "Dairy" },
+    { name: "Eggs", quantity: "12", unit: "eggs", added: "March 16, 2026", expires: "April 6, 2026", category: "Dairy" },
+    { name: "Chicken", quantity: "2", unit: "pounds", added: "April 3, 2026", expires: "April 7, 2026", category: "Meat" },
+    { name: "Rice", quantity: "1", unit: "bag", added: "March 5, 2026", expires: "June 1, 2026", category: "Pantry" },
+    { name: "Pasta", quantity: "3", unit: "boxes", added: "March 8, 2026", expires: "July 15, 2026", category: "Pantry" },
+    { name: "Bread", quantity: "1", unit: "loaf", added: "April 3, 2026", expires: "April 9, 2026", category: "Pantry" },
+    { name: "Apples", quantity: "8", unit: "apples", added: "April 1, 2026", expires: "April 14, 2026", category: "Produce" },
+    { name: "Spinach", quantity: "1", unit: "bag", added: "April 4, 2026", expires: "April 10, 2026", category: "Produce" },
+    { name: "Tomatoes", quantity: "5", unit: "tomatoes", added: "April 2, 2026", expires: "April 11, 2026", category: "Produce" },
 ];
 
 window.renderMyKitchenTab = function (content) {
