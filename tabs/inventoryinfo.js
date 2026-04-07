@@ -28,7 +28,7 @@ window.renderInventoryInfoTab = () => {
                   <li>Eggs</li>
                   <li style="color:#d32f2f;">Chicken expires in 2 days!</li>
               </ul>
-              <button class="primary-button">Start Cooking</button>
+              <button class="primary-button" id="start-cooking-btn">Start Cooking</button>
           </div>
       </div>
   `;
@@ -95,6 +95,11 @@ window.renderInventoryInfoTab = () => {
           window.addToGroceryList?.(name);
       });
       document.querySelector('[data-tab="grocerylist"]')?.click();
+  });
+
+  content.querySelector("#start-cooking-btn").addEventListener("click", () => {
+      window.selectedRecipeToOpen = "Chicken Fried Rice";
+      document.querySelector('[data-tab="recipes"]')?.click();
   });
 };
 

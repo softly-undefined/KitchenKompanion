@@ -213,6 +213,11 @@ window.renderRecipesTab = function (content) {
             detailModal.style.display = "flex";
         });
     });
+    if (window.selectedRecipeToOpen) {
+        const card = [...recipeCards].find(card => recipes[parseInt(card.dataset.recipeIndex)].name === window.selectedRecipeToOpen);
+        window.selectedRecipeToOpen = null;
+        card?.click();
+    }
 
     // edit recipe
     detailEditBtn.addEventListener("click", () => {
