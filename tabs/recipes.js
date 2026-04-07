@@ -1,8 +1,10 @@
-// Shared recipe collection — used to store user's recipes
+// hardcoded example recipes for recipes
 window.recipes = [
-    { name: "Chicken Fried Rice", ingredients: ["Chicken", "Rice", "Eggs", "Soy Sauce"], cookTime: "20 mins" },
-    { name: "Pasta Carbonara", ingredients: ["Pasta", "Eggs", "Cheese", "Bacon"], cookTime: "25 mins" },
-    { name: "Tomato Soup", ingredients: ["Tomatoes", "Cream", "Onion", "Garlic"], cookTime: "30 mins" },
+    { name: "Chicken Fried Rice", category: "Dinner", ingredients: ["Chicken", "Rice", "Eggs", "Soy Sauce"], cookTime: "20 mins" },
+    { name: "Pasta Carbonara", category: "Dinner", ingredients: ["Pasta", "Eggs", "Cheese", "Bacon"], cookTime: "25 mins" },
+    { name: "Tomato Soup", category: "Lunch", ingredients: ["Tomatoes", "Cream", "Onion", "Garlic"], cookTime: "30 mins" },
+    { name: "Avocado Toast", category: "Breakfast", ingredients: ["Bread", "Avocado", "Egg", "Salt"], cookTime: "10 mins" },
+    { name: "Trail Mix", category: "Snack", ingredients: ["Nuts", "Dried Fruit", "Chocolate Chips"], cookTime: "5 mins" },
 ];
 
 window.renderRecipesTab = function (content) {
@@ -20,14 +22,19 @@ window.renderRecipesTab = function (content) {
                     placeholder = "Search Bar"
                 />
 
-                <select id = "recipe-filter" class = "recipe-filter-dropdown">
-                    <option value = "">Filter By</option>
+                <select id="recipe-filter" class="recipe-filter-dropdown">
+                    <option value="all">Filter By: All</option>
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snack">Snack</option>
                 </select>
+
             </div>
 
             <div class = "recipes-grid" id = "recipes-grid">
                 ${recipes.map((recipe, index) => `
-                    <div class = "recipe-card" data-recipe-index="${index}">
+                    <div class="recipe-card" data-recipe-index="${index}" data-category="${recipe.category}">
                         <div class="recipe-card-content">
                             <h3 class="recipe-card-name">${recipe.name}</h3>
                             <p class="recipe-card-time">${recipe.cookTime}</p>
@@ -54,6 +61,15 @@ window.renderRecipesTab = function (content) {
                             <input type="text" id="recipe-cooktime" class="recipes-input"/>
                         </div>
                         <div class="recipes-form-group">
+                            <label for="recipe-category" class="recipes-label">Category</label>
+                            <select id="recipe-category" class="recipe-filter-dropdown">
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="recipes-form-group">
                             <label for="recipe-ingredients" class="recipes-label">Ingredients (comma-separated)</label>
                             <textarea id="recipe-ingredients" class="recipes-textarea"></textarea>
                         </div>
@@ -69,6 +85,10 @@ window.renderRecipesTab = function (content) {
                 <div class="recipes-modal-panel">
                     <h2 class="recipes-modal-title" id="recipe-detail-name"></h2>
                     <div class="recipes-detail-content">
+                        <div class="recipes-detail-section">
+                            <h3>Category</h3>
+                            <p id="recipe-detail-category"></p>
+                        </div>
                         <div class="recipes-detail-section">
                             <h3>Cook Time</h3>
                             <p id="recipe-detail-cooktime"></p>
@@ -97,6 +117,15 @@ window.renderRecipesTab = function (content) {
                         <div class="recipes-form-group">
                             <label for="recipe-edit-cooktime" class="recipes-label">Cook Time</label>
                             <input type="text" id="recipe-edit-cooktime" class="recipes-input"/>
+                        </div>
+                        <div class="recipes-form-group">
+                            <label for="recipe-edit-category" class="recipes-label">Category</label>
+                            <select id="recipe-edit-category" class="recipe-filter-dropdown">
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Lunch">Lunch</option>
+                                <option value="Dinner">Dinner</option>
+                                <option value="Snack">Snack</option>
+                            </select>
                         </div>
                         <div class="recipes-form-group">
                             <label for="recipe-edit-ingredients" class="recipes-label">Ingredients (comma-separated)</label>
@@ -128,11 +157,19 @@ window.renderRecipesTab = function (content) {
     const editCancelBtn = content.querySelector(".recipes-edit-cancel");
     const editNameInput = content.querySelector("#recipe-edit-name");
     const editCooktimeInput = content.querySelector("#recipe-edit-cooktime");
+    const editCategoryInput = content.querySelector("#recipe-edit-category");
     const editIngredientsInput = content.querySelector("#recipe-edit-ingredients");
 
     const nameInput = content.querySelector("#recipe-name");
     const cooktimeInput = content.querySelector("#recipe-cooktime");
+    const categoryInput = content.querySelector("#recipe-category");
     const ingredientsInput = content.querySelector("#recipe-ingredients");
+
+    // eric - add the recipes search elements
+    const recipesGrid = content.querySelector(".recipes-grid");
+    const searchInput = content.querySelector("#recipe-search");
+    const filterSelect = content.querySelector("#recipe-filter");
+
 
     let currentRecipeIndex = null;
 
@@ -149,6 +186,7 @@ window.renderRecipesTab = function (content) {
         addModal.style.display = "none";
         nameInput.value = "";
         cooktimeInput.value = "";
+        categoryInput.value = "Dinner";
         ingredientsInput.value = "";
     });
 
@@ -162,6 +200,7 @@ window.renderRecipesTab = function (content) {
             const recipe = recipes[index];
             
             content.querySelector("#recipe-detail-name").textContent = recipe.name;
+            content.querySelector("#recipe-detail-category").textContent = recipe.category;
             content.querySelector("#recipe-detail-cooktime").textContent = recipe.cookTime;
             
             const ingredientsList = content.querySelector("#recipe-detail-ingredients");
@@ -179,6 +218,7 @@ window.renderRecipesTab = function (content) {
             const recipe = recipes[currentRecipeIndex];
             editNameInput.value = recipe.name;
             editCooktimeInput.value = recipe.cookTime;
+            editCategoryInput.value = recipe.category;
             editIngredientsInput.value = recipe.ingredients.join(", ");
             
             detailModal.style.display = "none";
@@ -203,6 +243,7 @@ window.renderRecipesTab = function (content) {
         if (currentRecipeIndex !== null) {
             const name = editNameInput.value.trim();
             const cookTime = editCooktimeInput.value.trim();
+            const category = editCategoryInput.value;
             const ingredientsText = editIngredientsInput.value.trim();
 
             if (!name || !cookTime || !ingredientsText) {
@@ -220,7 +261,7 @@ window.renderRecipesTab = function (content) {
                 return;
             }
 
-            window.recipes[currentRecipeIndex] = { name, cookTime, ingredients };
+            window.recipes[currentRecipeIndex] = { name, category, cookTime, ingredients };
             editModal.style.display = "none";
             window.renderRecipesTab(content);
         }
@@ -248,6 +289,7 @@ window.renderRecipesTab = function (content) {
     addConfirmBtn.addEventListener("click", () => {
         const name = nameInput.value.trim();
         const cookTime = cooktimeInput.value.trim();
+        const category = categoryInput.value;
         const ingredientsText = ingredientsInput.value.trim();
 
         if (!name || !cookTime || !ingredientsText) {
@@ -265,8 +307,27 @@ window.renderRecipesTab = function (content) {
             return;
         }
 
-        window.recipes.push({ name, cookTime, ingredients });
+        window.recipes.push({ name, category, cookTime, ingredients });
 
         window.renderRecipesTab(content);
     });
+
+    // add filtering/search -eb
+    function applyFilters() {
+        const filterValue = filterSelect.value;
+        const query = searchInput.value.trim().toLowerCase();
+
+        recipesGrid.querySelectorAll(".recipe-card").forEach(card => {
+            const recipeName = card.querySelector(".recipe-card-name").textContent.trim().toLowerCase();
+
+            const matchesSearch = !query || recipeName.includes(query);
+            const matchesFilter = filterValue === "all" || card.dataset.category === filterValue;
+
+            card.style.display = matchesSearch && matchesFilter ? "" : "none";
+        });
+    }
+
+    filterSelect.addEventListener("change", applyFilters);
+    searchInput.addEventListener("input", applyFilters);
+
 };

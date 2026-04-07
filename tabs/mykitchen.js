@@ -1,8 +1,7 @@
-// Shared kitchen inventory — used by home tab and mykitchen tab
+// Hardcoded examples for my kitchen and inventory info
 window.kitchenItems = [
     { name: "Milk", quantity: "1 carton", added: "April 1, 2026", expires: "April 8, 2026", category: "Dairy" },
-    { name: "Cheese", quantity: "2 blocks", added: "March 20, 2026", expires: "April 10, 2026", category: "Dairy" },
-    { name: "Yogurt", quantity: "6 cups", added: "April 2, 2026", expires: "April 12, 2026", category: "Dairy" },
+    { name: "Cheese", quantity: "2 blocks", added: "March 20, 2026", expires: "April 20, 2026", category: "Dairy" },
     { name: "Eggs", quantity: "12 eggs", added: "March 16, 2026", expires: "April 6, 2026", category: "Dairy" },
     { name: "Chicken", quantity: "2 pounds", added: "April 3, 2026", expires: "April 7, 2026", category: "Meat" },
     { name: "Rice", quantity: "1 bag", added: "March 5, 2026", expires: "June 1, 2026", category: "Pantry" },
@@ -11,7 +10,6 @@ window.kitchenItems = [
     { name: "Apples", quantity: "8 apples", added: "April 1, 2026", expires: "April 14, 2026", category: "Produce" },
     { name: "Spinach", quantity: "1 bag", added: "April 4, 2026", expires: "April 10, 2026", category: "Produce" },
     { name: "Tomatoes", quantity: "5 tomatoes", added: "April 2, 2026", expires: "April 11, 2026", category: "Produce" },
-    { name: "Carrots", quantity: "1 bunch", added: "March 19, 2026", expires: "April 8, 2026", category: "Produce" },
 ];
 
 window.renderMyKitchenTab = function (content) {
