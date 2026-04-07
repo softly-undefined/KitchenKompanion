@@ -31,13 +31,7 @@ window.renderMyKitchenTab = function (content) {
                 </select>
             </div>
 
-            <div class="kitchen-grid">
-                ${items.map((item, index) => `
-                    <button class="kitchen-card" type="button" data-item-index="${index}" data-category="${item.category}" data-expires="${item.expires}">
-                        ${item.name}
-                    </button>
-                `).join("")}
-            </div>
+            <div class="kitchen-grid"></div>
 
             <button class="kitchen-add-btn">
                 <span class="kitchen-add-icon" aria-hidden="true">+</span>
@@ -57,6 +51,18 @@ window.renderMyKitchenTab = function (content) {
                             <div class="kitchen-detail-label">Quantity</div>
                             <div class="kitchen-detail-value" data-detail="quantity"></div>
                             <input type="text" data-detail="quantity"/>
+                            <select data-detail="editUnit">
+                                <option value="">Unit</option>
+                                <option value="each">Each</option>
+                                <option value="carton">Carton</option>
+                                <option value="bag">Bag</option>
+                                <option value="bunch">Bunch</option>
+                                <option value="lbs">Lbs</option>
+                                <option value="oz">Oz</option>
+                                <option value="cups">Cups</option>
+                                <option value="boxes">Boxes</option>
+                                <option value="loaf">Loaf</option>
+                            </select>
                         </div>
                         <div class="kitchen-detail-row">
                             <div class="kitchen-detail-label">Date Added</div>
@@ -71,6 +77,28 @@ window.renderMyKitchenTab = function (content) {
                         <div class="kitchen-detail-row">
                             <div class="kitchen-detail-label">Category</div>
                             <div class="kitchen-detail-value" data-detail="category"></div>
+                            <select data-detail="editCategory">
+                                <option value="">Select a category</option>
+                                <option value="Dairy">Dairy</option>
+                                <option value="Meat">Meat</option>
+                                <option value="Produce">Produce</option>
+                                <option value="Pantry">Pantry</option>
+                                <option value="Beverages">Beverages</option>
+                                <option value="Snacks">Snacks</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="kitchen-detail-row">
+                            <div class="kitchen-detail-label">Dietary Tags</div>
+                            <div class="kitchen-detail-value" data-detail="dietaryTags"></div>
+                            <div class="edit-dietary-tags">
+                                <label><input type="checkbox" value="Vegan"> Vegan</label>
+                                <label><input type="checkbox" value="Vegetarian"> Vegetarian</label>
+                                <label><input type="checkbox" value="Gluten-Free"> Gluten-Free</label>
+                                <label><input type="checkbox" value="Dairy-Free"> Dairy-Free</label>
+                                <label><input type="checkbox" value="Nut-Free"> Nut-Free</label>
+                                <label><input type="checkbox" value="Organic"> Organic</label>
+                            </div>
                         </div>
                     </div>
                     <div class="kitchen-modal-buttons">
@@ -85,7 +113,7 @@ window.renderMyKitchenTab = function (content) {
 
             <div class="kitchen-add-modal" hidden>
                 <div class="kitchen-modal-panel">
-                    <h2 class="kitchen-modal-title">Item Details</h2>
+                    <h2 class="kitchen-modal-title">Add New Item</h2>
                     <div class="kitchen-detail-list">
                         <div class="kitchen-detail-row">
                             <div class="kitchen-detail-label">Name</div>
@@ -94,6 +122,18 @@ window.renderMyKitchenTab = function (content) {
                         <div class="kitchen-detail-row">
                             <div class="kitchen-detail-label">Quantity</div>
                             <input type="text" data-detail="addQuantity"/>
+                            <select data-detail="addUnit">
+                                <option value="">Unit</option>
+                                <option value="each">Each</option>
+                                <option value="carton">Carton</option>
+                                <option value="bag">Bag</option>
+                                <option value="bunch">Bunch</option>
+                                <option value="lbs">Lbs</option>
+                                <option value="oz">Oz</option>
+                                <option value="cups">Cups</option>
+                                <option value="boxes">Boxes</option>
+                                <option value="loaf">Loaf</option>
+                            </select>
                         </div>
                         <div class="kitchen-detail-row">
                             <div class="kitchen-detail-label">Date Added</div>
@@ -103,6 +143,30 @@ window.renderMyKitchenTab = function (content) {
                             <div class="kitchen-detail-label">Expiration Date</div>
                             <input type="text" data-detail="addExpires"/>
                         </div>
+                        <div class="kitchen-detail-row">
+                            <div class="kitchen-detail-label">Category</div>
+                            <select data-detail="addCategory">
+                                <option value="">Select a category</option>
+                                <option value="Dairy">Dairy</option>
+                                <option value="Meat">Meat</option>
+                                <option value="Produce">Produce</option>
+                                <option value="Pantry">Pantry</option>
+                                <option value="Beverages">Beverages</option>
+                                <option value="Snacks">Snacks</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="kitchen-detail-row">
+                            <div class="kitchen-detail-label">Dietary Tags</div>
+                            <div class="add-dietary-tags">
+                                <label><input type="checkbox" value="Vegan"> Vegan</label>
+                                <label><input type="checkbox" value="Vegetarian"> Vegetarian</label>
+                                <label><input type="checkbox" value="Gluten-Free"> Gluten-Free</label>
+                                <label><input type="checkbox" value="Dairy-Free"> Dairy-Free</label>
+                                <label><input type="checkbox" value="Nut-Free"> Nut-Free</label>
+                                <label><input type="checkbox" value="Organic"> Organic</label>
+                            </div>
+                        </div>
                     </div>
                     <div class="kitchen-modal-buttons">
                         <button class="kitchen-modal-add" type="button">Add</button>
@@ -110,12 +174,9 @@ window.renderMyKitchenTab = function (content) {
                     </div>
                 </div>
             </div>
-
-
         </section>
     `;
 
-    // Sets up the grid
     const grid = content.querySelector(".kitchen-grid");
     const modal = content.querySelector(".kitchen-modal");
     const addModalElement = content.querySelector(".kitchen-add-modal");
@@ -125,13 +186,11 @@ window.renderMyKitchenTab = function (content) {
     const confirmButton = content.querySelector(".kitchen-modal-confirm");
     const cancelButton = content.querySelector(".kitchen-modal-cancel");
     const deleteButton = content.querySelector(".kitchen-modal-delete");
-    
-    
+
     const addItemButton = content.querySelector(".kitchen-add-btn");
     const confirmAddButton = content.querySelector(".kitchen-modal-add");
     const cancelAddButton = content.querySelector(".kitchen-modal-add-cancel");
-    
-    
+
     let isEditing = false;
     let currItem = null;
 
@@ -146,45 +205,86 @@ window.renderMyKitchenTab = function (content) {
     const inputFields = {
         name: content.querySelector('input[data-detail="name"]'),
         quantity: content.querySelector('input[data-detail="quantity"]'),
+        unit: content.querySelector('select[data-detail="editUnit"]'),
         added: content.querySelector('input[data-detail="added"]'),
         expires: content.querySelector('input[data-detail="expires"]'),
+        category: content.querySelector('select[data-detail="editCategory"]'),
     };
 
     const addFields = {
         name: content.querySelector('input[data-detail="addName"]'),
         quantity: content.querySelector('input[data-detail="addQuantity"]'),
+        unit: content.querySelector('select[data-detail="addUnit"]'),
         added: content.querySelector('input[data-detail="addAdded"]'),
         expires: content.querySelector('input[data-detail="addExpires"]'),
+        category: content.querySelector('select[data-detail="addCategory"]'),
+    };
+
+    function renderGrid() {
+        grid.innerHTML = items.map((item, index) => `
+            <div class="kitchen-card" data-item-index="${index}" data-category="${item.category}" data-expires="${item.expires}">
+                <div class="kitchen-card-name">${item.name}</div>
+                <div class="kitchen-card-quantity">
+                    <span class="kitchen-card-quantity-number">${item.quantity}</span> ${item.unit}
+                    <button class="decrement-button" data-item-index="${index}">Use 1</button>
+                </div>
+                <div class="kitchen-card-category">${item.category}</div>
+                <div class="kitchen-card-expires">Expires: ${item.expires}</div>
+            </div>
+        `).join("");
+
+        grid.querySelectorAll(".decrement-button").forEach(button => {
+            button.addEventListener("click", (event) => {
+                event.stopPropagation();
+                const idx = Number(event.target.dataset.itemIndex);
+                const item = items[idx];
+                const card = content.querySelector(`.kitchen-card[data-item-index="${idx}"]`);
+                if (item.quantity > 1) {
+                    item.quantity--;
+                    card.querySelector(".kitchen-card-quantity-number").textContent = item.quantity;
+                } else {
+                    items.splice(idx, 1);
+                    renderGrid();
+                }
+            });
+        });
     }
 
-    // sets the modal (pop-out) to be the values for the selected item.
     function openModal(item) {
         detailFields.name.textContent = item.name;
-        detailFields.quantity.textContent = item.quantity;
+        detailFields.quantity.textContent = `${item.quantity} ${item.unit}`;
         detailFields.added.textContent = item.added;
         detailFields.expires.textContent = item.expires;
         detailFields.category.textContent = item.category;
-        
+
         modal.hidden = false;
-        
         isEditing = false;
 
         closeButton.hidden = false;
         editButton.hidden = false;
-
         inputFields.name.hidden = true;
         inputFields.quantity.hidden = true;
         inputFields.added.hidden = true;
         inputFields.expires.hidden = true;
-        
+        inputFields.unit.hidden = true;
+        inputFields.category.hidden = true;
         confirmButton.hidden = true;
         cancelButton.hidden = true;
         deleteButton.hidden = true;
-
         detailFields.name.hidden = false;
         detailFields.quantity.hidden = false;
         detailFields.added.hidden = false;
         detailFields.expires.hidden = false;
+        detailFields.category.hidden = false;
+
+        content.querySelector(".edit-dietary-tags").hidden = true;
+        content.querySelectorAll(".edit-dietary-tags input").forEach(cb => cb.disabled = true);
+        content.querySelectorAll(".edit-dietary-tags input").forEach(cb => {
+            cb.checked = item.dietaryTags && item.dietaryTags.includes(cb.value);
+        });
+
+        content.querySelector('[data-detail="dietaryTags"]').hidden = false;
+        content.querySelector('[data-detail="dietaryTags"]').textContent = item.dietaryTags?.join(", ") || "None";
 
         currItem = item;
     }
@@ -200,14 +300,14 @@ window.renderMyKitchenTab = function (content) {
 
     function confirmModal() {
         currItem.name = inputFields.name.value;
-        currItem.quantity = inputFields.quantity.value;
+        currItem.quantity = Number(inputFields.quantity.value);
+        currItem.unit = inputFields.unit.value;
         currItem.added = inputFields.added.value;
         currItem.expires = inputFields.expires.value;
+        currItem.category = inputFields.category.value;
+        currItem.dietaryTags = [...content.querySelectorAll(".edit-dietary-tags input:checked")].map(cb => cb.value);
 
-        const index = items.indexOf(currItem);
-        const card = content.querySelector(`[data-item-index="${index}"]`);
-        card.textContent = currItem.name;
-
+        renderGrid();
         openModal(currItem);
     }
 
@@ -217,73 +317,76 @@ window.renderMyKitchenTab = function (content) {
         confirmButton.hidden = false;
         cancelButton.hidden = false;
         deleteButton.hidden = false;
-
         inputFields.name.hidden = false;
         inputFields.quantity.hidden = false;
         inputFields.added.hidden = false;
         inputFields.expires.hidden = false;
+        inputFields.unit.hidden = false;
+        inputFields.category.hidden = false;
 
         inputFields.name.value = currItem.name;
         inputFields.quantity.value = currItem.quantity;
         inputFields.added.value = currItem.added;
         inputFields.expires.value = currItem.expires;
+        inputFields.unit.value = currItem.unit;
+        inputFields.category.value = currItem.category;
 
         closeButton.hidden = true;
         editButton.hidden = true;
-        
         detailFields.name.hidden = true;
         detailFields.quantity.hidden = true;
         detailFields.added.hidden = true;
         detailFields.expires.hidden = true;
+        detailFields.category.hidden = true;
+
+        content.querySelectorAll(".edit-dietary-tags input").forEach(cb => cb.disabled = false);
+        content.querySelectorAll(".edit-dietary-tags input").forEach(cb => {
+            cb.checked = currItem.dietaryTags.includes(cb.value);
+        });
+        content.querySelector('[data-detail="dietaryTags"]').hidden = true;
+        content.querySelector(".edit-dietary-tags").hidden = false;
     }
 
     function deleteModal() {
         const index = items.indexOf(currItem);
-        const card = content.querySelector(`[data-item-index="${index}"]`);
         items.splice(index, 1);
-        card.remove();
-        closeModal()
+        closeModal();
+        renderGrid();
     }
 
     function openAddModal() {
         addModalElement.hidden = false;
         addFields.name.value = "";
         addFields.quantity.value = "";
+        addFields.unit.value = "";
         addFields.added.value = "";
         addFields.expires.value = "";
-
+        addFields.category.value = "";
+        content.querySelectorAll(".add-dietary-tags input").forEach(cb => cb.checked = false);
     }
 
     function cancelAddModal() {
         addModalElement.hidden = true;
-
     }
 
     function confirmAddModal() {
         const newItem = {
             name: addFields.name.value,
-            quantity: addFields.quantity.value,
+            quantity: Number(addFields.quantity.value),
+            unit: addFields.unit.value,
             added: addFields.added.value,
             expires: addFields.expires.value,
-        }
+            category: addFields.category.value,
+            dietaryTags: [...content.querySelectorAll(".add-dietary-tags input:checked")].map(cb => cb.value),
+        };
         items.push(newItem);
-        const newCard = document.createElement("button");
-        newCard.className = "kitchen-card";
-        newCard.type = "button";
-        newCard.dataset.itemIndex = items.length - 1;
-        newCard.textContent = newItem.name;
-        grid.appendChild(newCard);
-        cancelAddModal()
+        renderGrid();
+        cancelAddModal();
     }
 
-
-
-    
-    // Let's you open the modal for an item when you click it
     grid.addEventListener("click", (event) => {
         const button = event.target.closest(".kitchen-card");
         if (!button) return;
-
         openModal(items[Number(button.dataset.itemIndex)]);
     });
 
@@ -292,18 +395,12 @@ window.renderMyKitchenTab = function (content) {
     cancelButton.addEventListener("click", cancelModal);
     confirmButton.addEventListener("click", confirmModal);
     deleteButton.addEventListener("click", deleteModal);
-    
-    
-    
     addItemButton.addEventListener("click", openAddModal);
-
     confirmAddButton.addEventListener("click", confirmAddModal);
     cancelAddButton.addEventListener("click", cancelAddModal);
 
     modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            closeModal();
-        }
+        if (event.target === modal) closeModal();
     });
 
     const filterSelect = content.querySelector("#kitchen-filter");
@@ -330,4 +427,6 @@ window.renderMyKitchenTab = function (content) {
 
     filterSelect.addEventListener("change", applyFilters);
     searchInput.addEventListener("input", applyFilters);
+
+    renderGrid();
 };
