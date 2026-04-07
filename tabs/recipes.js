@@ -19,7 +19,7 @@ window.renderRecipesTab = function (content) {
                     type = "text" 
                     id = "recipe-search" 
                     class = "recipe-search-bar" 
-                    placeholder = "Search Bar"
+                    placeholder = "Search recipes..."
                 />
 
                 <select id="recipe-filter" class="recipe-filter-dropdown">
@@ -99,6 +99,7 @@ window.renderRecipesTab = function (content) {
                         </div>
                     </div>
                     <div class="recipes-modal-buttons">
+                        <button class="recipes-detail-grocery" type="button">Add to grocery list</button>
                         <button class="recipes-detail-edit" type="button">Edit</button>
                         <button class="recipes-detail-delete" type="button">Delete</button>
                         <button class="recipes-detail-close" type="button">Close</button>
@@ -150,6 +151,7 @@ window.renderRecipesTab = function (content) {
     const detailModal = content.querySelector(".recipes-detail-modal");
     const detailCloseBtn = content.querySelector(".recipes-detail-close");
     const detailEditBtn = content.querySelector(".recipes-detail-edit");
+    const detailGroceryBtn = content.querySelector(".recipes-detail-grocery");
     const detailDeleteBtn = content.querySelector(".recipes-detail-delete");
 
     const editModal = content.querySelector(".recipes-edit-modal");
@@ -235,6 +237,13 @@ window.renderRecipesTab = function (content) {
                 detailModal.style.display = "none";
                 window.renderRecipesTab(content);
             }
+        }
+    });
+
+    detailGroceryBtn.addEventListener("click", () => {
+        if (currentRecipeIndex !== null) {
+            recipes[currentRecipeIndex].ingredients.forEach(window.addToGroceryList);
+            document.querySelector('[data-tab="grocerylist"]')?.click();
         }
     });
 

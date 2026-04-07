@@ -221,12 +221,18 @@
 
 .recipes-modal-buttons {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
+}
+
+.recipes-modal-buttons > * {
+    flex: 1;
 }
 
 .recipes-modal-add,
 .recipes-modal-cancel,
 .recipes-detail-close,
+.recipes-detail-grocery,
 .recipes-detail-edit,
 .recipes-detail-delete,
 .recipes-edit-save,
@@ -239,4 +245,8 @@
     color: #fff;
     font: inherit;
     cursor: pointer;
+}
+
+.recipes-detail-grocery {
+    flex-basis: 100%;
 }
