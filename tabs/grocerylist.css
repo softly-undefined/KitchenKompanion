@@ -1,0 +1,96 @@
+.grocery-screen {
+    padding: 32px 20px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    color: #2e2e2e;
+    font: 400 16px/1.5 "Inter", sans-serif;
+}
+
+.grocery-title {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.grocery-input,
+.grocery-list {
+    width: min(100%, 500px);
+}
+
+.grocery-input {
+    min-height: 46px;
+    padding: 10px 16px;
+    border: 1px solid #ddd6cc;
+    border-radius: 12px;
+    background: #fff;
+    color: #2e2e2e;
+    font: inherit;
+    outline: none;
+}
+
+.grocery-input::placeholder {
+    color: #6b6b6b;
+}
+
+.grocery-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.grocery-add-btn {
+    width: min(100%, 320px);
+    min-height: 56px;
+    border: 0;
+    border-radius: 12px;
+    background: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+}
+
+/* List settings for each item (different from card setups in recipes and my kitchen) */
+.grocery-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+}
+
+.grocery-item {
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid #ddd6cc;
+}
+
+.grocery-item-text {
+    position: relative;
+    cursor: pointer;
+}
+
+.grocery-strike-line {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 0%;
+    height: 2px;
+    background: #d32f2f;
+    transition: width 0.3s ease;
+}
+
+.grocery-delete-btn {
+    min-height: 36px;
+    padding: 0 12px;
+    border: 0;
+    border-radius: 10px;
+    background: #4caf50;
+    color: #fff;
+    cursor: pointer;
+    font: inherit;
+}

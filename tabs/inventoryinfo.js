@@ -1,10 +1,10 @@
-window.renderHomeTab = () => {
+window.renderInventoryInfoTab = () => {
   const content = document.getElementById("content");
   if (!content) return;
 
   content.innerHTML = `
-      <div class="home-container">
-          <h1 class="app-header">Itinerary Information</h1>
+      <div class="inventoryinfo-container">
+          <h1 class="app-header">Inventory Info</h1>
           
 
           <div class="section-wrapper">
@@ -28,7 +28,7 @@ window.renderHomeTab = () => {
                   <li>Eggs</li>
                   <li style="color:#d32f2f;">Chicken expires in 2 days!</li>
               </ul>
-              <button class="primary-button">Start Cooking</button>
+              <button class="primary-button" id="start-cooking-btn">Start Cooking</button>
           </div>
       </div>
   `;
@@ -45,11 +45,12 @@ window.renderHomeTab = () => {
       .filter(({ daysLeft }) => daysLeft <= 7)
       .sort((a, b) => a.daysLeft - b.daysLeft)
       .map(({ item, daysLeft }) => {
+          const dayLabel = Math.abs(daysLeft) === 1 ? "day" : "days";
           const label = daysLeft < 0
-              ? `${item.name} — Expired ${Math.abs(daysLeft)} day(s) ago`
+              ? `${item.name} - Expired ${Math.abs(daysLeft)} ${dayLabel} ago`
               : daysLeft === 0
-                  ? `${item.name} — Expires today`
-                  : `${item.name} — Expires in ${daysLeft} day(s)`;
+                  ? `${item.name} - Expires today`
+                  : `${item.name} - Expires in ${daysLeft} ${dayLabel}`;
           const color = daysLeft <= 2 ? "#d32f2f" : "#F4B400";
           return { text: label, color };
       });
@@ -63,7 +64,7 @@ window.renderHomeTab = () => {
       .filter(({ count }) => count !== null && count <= 2)
       .sort((a, b) => a.count - b.count)
       .map(({ item, count }) => ({
-          text: `${item.name} — Only ${item.quantity} left`,
+          text: `${item.name} - Only ${item.quantity} left`,
           color: count <= 1 ? "#d32f2f" : "#F4B400",
       }));
 
@@ -90,11 +91,16 @@ window.renderHomeTab = () => {
   const groceryBtn = content.querySelector("#grocery-btn");
   groceryBtn.addEventListener("click", () => {
       lowData.forEach(({ text }) => {
-          const name = text.split(" —")[0].replace("• ", "").trim();
+          const name = text.split(" -")[0].replace("• ", "").trim();
           window.addToGroceryList?.(name);
       });
       document.querySelector('[data-tab="grocerylist"]')?.click();
   });
+
+  content.querySelector("#start-cooking-btn").addEventListener("click", () => {
+      window.selectedRecipeToOpen = "Chicken Fried Rice";
+      document.querySelector('[data-tab="recipes"]')?.click();
+  });
 };
 
-document.addEventListener("DOMContentLoaded", window.renderHomeTab);
+document.addEventListener("DOMContentLoaded", window.renderInventoryInfoTab);

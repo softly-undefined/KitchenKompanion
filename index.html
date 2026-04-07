@@ -7,6 +7,8 @@
         <title>Kitchen Kompanion</title>
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="tabs/mykitchen.css" />
+        <link rel="stylesheet" href="tabs/recipes.css" />
+        <link rel="stylesheet" href="tabs/grocerylist.css" />
     </head>
     <body>
         <div id="device">
@@ -14,10 +16,10 @@
                 <main id="content"></main>
 
                 <nav id="nav">
-                    <!-- home -->
-                    <button class="tab-btn" data-tab="home">
-                        <img src="assets/icons/home.svg" alt="Home" />
-                        <span>Home</span>
+                    <!-- inventory info -->
+                    <button class="tab-btn" data-tab="inventoryinfo">
+                        <img src="assets/icons/inventoryinfo.svg" alt="Inventory Info" />
+                        <span>Inventory Info</span>
                     </button>
 
                     <!-- profile -->
@@ -43,7 +45,7 @@
         </div>
 
         <!-- scripts -->
-        <script src="tabs/home.js"></script>
+        <script src="tabs/inventoryinfo.js"></script>
         <script src="chart.js"></script>
         <script src="chartjs-plugin-datalabels.js"></script>
         <script src="tabs/mykitchen.js"></script>

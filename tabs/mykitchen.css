@@ -165,6 +165,8 @@ select.kitchen-field {
     padding-right: 36px;
     width: 100%;
     font: 400 16px/1.5 "Inter", sans-serif;
+}
+
 input[data-detail] {
     font: inherit;
     width: 100%;
