@@ -1,10 +1,10 @@
-window.renderHomeTab = () => {
+window.renderInventoryInfoTab = () => {
   const content = document.getElementById("content");
   if (!content) return;
 
   content.innerHTML = `
-      <div class="home-container">
-          <h1 class="app-header">Itinerary Information</h1>
+      <div class="inventoryinfo-container">
+          <h1 class="app-header">Inventory Info</h1>
           
 
           <div class="section-wrapper">
@@ -97,4 +97,4 @@ window.renderHomeTab = () => {
   });
 };
 
-document.addEventListener("DOMContentLoaded", window.renderHomeTab);
+document.addEventListener("DOMContentLoaded", window.renderInventoryInfoTab);

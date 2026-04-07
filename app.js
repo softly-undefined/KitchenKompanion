@@ -16,7 +16,7 @@
     }
 
     const renderers = {
-        home: () => window.renderHomeTab?.(content),
+        inventoryinfo: () => window.renderInventoryInfoTab?.(content),
         mykitchen: () => window.renderMyKitchenTab?.(content),
         grocerylist: () => window.renderGroceryListTab?.(content),
         recipes: () => window.renderRecipesTab?.(content), // Added by Spencer 2/27/2026
@@ -68,5 +68,5 @@
         });
     });
 
-    renderTab("home");
+    renderTab("inventoryinfo");
 })();

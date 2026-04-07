@@ -73,7 +73,7 @@ window.renderGroceryListTab = function(content) {
     window.groceryListItems.forEach(name => addItem(name));
 
     function addItem(forcedText) {
-        const text = forcedText ?? input.value.trim();
+        const text = typeof forcedText === "string" ? forcedText.trim() : input.value.trim();
         if (!text) return;
         if (!forcedText) {
             if (!window.groceryListItems.includes(text)) window.groceryListItems.push(text);
