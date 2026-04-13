@@ -1,15 +1,15 @@
 // Hardcoded examples for my kitchen and inventory info
 window.kitchenItems = [
-    { name: "Milk",     quantity: 1,  unit: "carton", added: "April 1, 2026",  expires: "April 8, 2026",  category: "Dairy",   dietaryTags: ["Vegetarian"] },
-    { name: "Cheese",   quantity: 2,  unit: "blocks", added: "March 20, 2026", expires: "April 20, 2026", category: "Dairy",   dietaryTags: ["Vegetarian"] },
-    { name: "Eggs",     quantity: 12, unit: "each",   added: "March 16, 2026", expires: "April 6, 2026",  category: "Dairy",   dietaryTags: ["Vegetarian"] },
-    { name: "Chicken",  quantity: 2,  unit: "lbs",    added: "April 3, 2026",  expires: "April 7, 2026",  category: "Meat",    dietaryTags: ["Gluten-Free"] },
-    { name: "Rice",     quantity: 1,  unit: "bag",    added: "March 5, 2026",  expires: "June 1, 2026",   category: "Pantry",  dietaryTags: ["Vegan", "Gluten-Free"] },
-    { name: "Pasta",    quantity: 3,  unit: "boxes",  added: "March 8, 2026",  expires: "July 15, 2026",  category: "Pantry",  dietaryTags: ["Vegetarian"] },
-    { name: "Bread",    quantity: 1,  unit: "loaf",   added: "April 3, 2026",  expires: "April 9, 2026",  category: "Pantry",  dietaryTags: ["Vegetarian"] },
-    { name: "Apples",   quantity: 8,  unit: "each",   added: "April 1, 2026",  expires: "April 14, 2026", category: "Produce", dietaryTags: ["Vegan", "Gluten-Free"] },
-    { name: "Spinach",  quantity: 1,  unit: "bag",    added: "April 4, 2026",  expires: "April 10, 2026", category: "Produce", dietaryTags: ["Vegan", "Gluten-Free"] },
-    { name: "Tomatoes", quantity: 5,  unit: "each",   added: "April 2, 2026",  expires: "April 11, 2026", category: "Produce", dietaryTags: ["Vegan", "Gluten-Free"] },
+    { name: "Milk", quantity: "1", unit: "carton", added: "April 1, 2026", expires: "April 8, 2026", category: "Dairy" },
+    { name: "Cheese", quantity: "2", unit: "blocks", added: "March 20, 2026", expires: "April 20, 2026", category: "Dairy" },
+    { name: "Eggs", quantity: "12", unit: "eggs", added: "March 16, 2026", expires: "April 6, 2026", category: "Dairy" },
+    { name: "Chicken", quantity: "2", unit: "pounds", added: "April 3, 2026", expires: "April 7, 2026", category: "Meat" },
+    { name: "Rice", quantity: "1", unit: "bag", added: "March 5, 2026", expires: "June 1, 2026", category: "Pantry" },
+    { name: "Pasta", quantity: "3", unit: "boxes", added: "March 8, 2026", expires: "July 15, 2026", category: "Pantry" },
+    { name: "Bread", quantity: "1", unit: "loaf", added: "April 3, 2026", expires: "April 9, 2026", category: "Pantry" },
+    { name: "Apples", quantity: "8", unit: "apples", added: "April 1, 2026", expires: "April 14, 2026", category: "Produce" },
+    { name: "Spinach", quantity: "1", unit: "bag", added: "April 4, 2026", expires: "April 10, 2026", category: "Produce" },
+    { name: "Tomatoes", quantity: "5", unit: "tomatoes", added: "April 2, 2026", expires: "April 11, 2026", category: "Produce" },
 ];
 
 window.renderMyKitchenTab = function (content) {
