@@ -248,6 +248,8 @@ window.renderMyKitchenTab = function (content) {
                 }
             });
         });
+
+        applyFilters();
     }
 
     function openModal(item) {
@@ -280,7 +282,7 @@ window.renderMyKitchenTab = function (content) {
         content.querySelector(".edit-dietary-tags").hidden = true;
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => cb.disabled = true);
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => {
-            cb.checked = item.dietaryTags && item.dietaryTags.includes(cb.value);
+            cb.checked = (item.dietaryTags || []).includes(cb.value);
         });
 
         content.querySelector('[data-detail="dietaryTags"]').hidden = false;
@@ -341,7 +343,7 @@ window.renderMyKitchenTab = function (content) {
 
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => cb.disabled = false);
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => {
-            cb.checked = currItem.dietaryTags.includes(cb.value);
+            cb.checked = (currItem.dietaryTags || []).includes(cb.value);
         });
         content.querySelector('[data-detail="dietaryTags"]').hidden = true;
         content.querySelector(".edit-dietary-tags").hidden = false;
@@ -370,6 +372,23 @@ window.renderMyKitchenTab = function (content) {
     }
 
     function confirmAddModal() {
+        const name = addFields.name.value.trim();
+        const quantity = Number(addFields.quantity.value);
+        const category = addFields.category.value;
+
+        if (!name) {
+            alert("Please enter a item name.");
+            return;
+        }
+        if (!quantity || quantity < 1) {
+            alert("Please enter a valid quantity.");
+            return;
+        }
+        if (!category) {
+            alert("Please select a category.");
+            return;
+        }
+
         const newItem = {
             name: addFields.name.value,
             quantity: Number(addFields.quantity.value),
