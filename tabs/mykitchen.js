@@ -1,15 +1,15 @@
 // Hardcoded examples for my kitchen and inventory info
 window.kitchenItems = [
-    { name: "Milk", quantity: "1 carton", added: "April 1, 2026", expires: "April 8, 2026", category: "Dairy" },
-    { name: "Cheese", quantity: "2 blocks", added: "March 20, 2026", expires: "April 20, 2026", category: "Dairy" },
-    { name: "Eggs", quantity: "12 eggs", added: "March 16, 2026", expires: "April 6, 2026", category: "Dairy" },
-    { name: "Chicken", quantity: "2 pounds", added: "April 3, 2026", expires: "April 7, 2026", category: "Meat" },
-    { name: "Rice", quantity: "1 bag", added: "March 5, 2026", expires: "June 1, 2026", category: "Pantry" },
-    { name: "Pasta", quantity: "3 boxes", added: "March 8, 2026", expires: "July 15, 2026", category: "Pantry" },
-    { name: "Bread", quantity: "1 loaf", added: "April 3, 2026", expires: "April 9, 2026", category: "Pantry" },
-    { name: "Apples", quantity: "8 apples", added: "April 1, 2026", expires: "April 14, 2026", category: "Produce" },
-    { name: "Spinach", quantity: "1 bag", added: "April 4, 2026", expires: "April 10, 2026", category: "Produce" },
-    { name: "Tomatoes", quantity: "5 tomatoes", added: "April 2, 2026", expires: "April 11, 2026", category: "Produce" },
+    { name: "Milk",     quantity: 1,  unit: "carton", added: "April 1, 2026",  expires: "April 8, 2026",  category: "Dairy",   dietaryTags: ["Vegetarian"] },
+    { name: "Cheese",   quantity: 2,  unit: "blocks", added: "March 20, 2026", expires: "April 20, 2026", category: "Dairy",   dietaryTags: ["Vegetarian"] },
+    { name: "Eggs",     quantity: 12, unit: "each",   added: "March 16, 2026", expires: "April 6, 2026",  category: "Dairy",   dietaryTags: ["Vegetarian"] },
+    { name: "Chicken",  quantity: 2,  unit: "lbs",    added: "April 3, 2026",  expires: "April 7, 2026",  category: "Meat",    dietaryTags: ["Gluten-Free"] },
+    { name: "Rice",     quantity: 1,  unit: "bag",    added: "March 5, 2026",  expires: "June 1, 2026",   category: "Pantry",  dietaryTags: ["Vegan", "Gluten-Free"] },
+    { name: "Pasta",    quantity: 3,  unit: "boxes",  added: "March 8, 2026",  expires: "July 15, 2026",  category: "Pantry",  dietaryTags: ["Vegetarian"] },
+    { name: "Bread",    quantity: 1,  unit: "loaf",   added: "April 3, 2026",  expires: "April 9, 2026",  category: "Pantry",  dietaryTags: ["Vegetarian"] },
+    { name: "Apples",   quantity: 8,  unit: "each",   added: "April 1, 2026",  expires: "April 14, 2026", category: "Produce", dietaryTags: ["Vegan", "Gluten-Free"] },
+    { name: "Spinach",  quantity: 1,  unit: "bag",    added: "April 4, 2026",  expires: "April 10, 2026", category: "Produce", dietaryTags: ["Vegan", "Gluten-Free"] },
+    { name: "Tomatoes", quantity: 5,  unit: "each",   added: "April 2, 2026",  expires: "April 11, 2026", category: "Produce", dietaryTags: ["Vegan", "Gluten-Free"] },
 ];
 
 window.renderMyKitchenTab = function (content) {
@@ -248,6 +248,8 @@ window.renderMyKitchenTab = function (content) {
                 }
             });
         });
+
+        applyFilters();
     }
 
     function openModal(item) {
@@ -280,7 +282,7 @@ window.renderMyKitchenTab = function (content) {
         content.querySelector(".edit-dietary-tags").hidden = true;
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => cb.disabled = true);
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => {
-            cb.checked = item.dietaryTags && item.dietaryTags.includes(cb.value);
+            cb.checked = (item.dietaryTags || []).includes(cb.value);
         });
 
         content.querySelector('[data-detail="dietaryTags"]').hidden = false;
@@ -341,7 +343,7 @@ window.renderMyKitchenTab = function (content) {
 
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => cb.disabled = false);
         content.querySelectorAll(".edit-dietary-tags input").forEach(cb => {
-            cb.checked = currItem.dietaryTags.includes(cb.value);
+            cb.checked = (currItem.dietaryTags || []).includes(cb.value);
         });
         content.querySelector('[data-detail="dietaryTags"]').hidden = true;
         content.querySelector(".edit-dietary-tags").hidden = false;
@@ -370,6 +372,23 @@ window.renderMyKitchenTab = function (content) {
     }
 
     function confirmAddModal() {
+        const name = addFields.name.value.trim();
+        const quantity = Number(addFields.quantity.value);
+        const category = addFields.category.value;
+
+        if (!name) {
+            alert("Please enter a item name.");
+            return;
+        }
+        if (!quantity || quantity < 1) {
+            alert("Please enter a valid quantity.");
+            return;
+        }
+        if (!category) {
+            alert("Please select a category.");
+            return;
+        }
+
         const newItem = {
             name: addFields.name.value,
             quantity: Number(addFields.quantity.value),
