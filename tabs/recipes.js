@@ -70,8 +70,8 @@ window.renderRecipesTab = function (content) {
                             <h3 class="recipe-card-name">${recipe.name}</h3>
                             <p class="recipe-card-time">${recipe.cookTime}</p>
                         </div>
-                    </div>
-                `).join("")}
+                    </div>`;
+                }).join("")}
             </div>
 
             <button class="recipes-add-btn">
@@ -128,6 +128,10 @@ window.renderRecipesTab = function (content) {
                         <div class="recipes-detail-section">
                             <h3>Ingredients</h3>
                             <ul id="recipe-detail-ingredients"></ul>
+                        </div>
+                        <div class="recipes-detail-section">
+                            <h3>Allergen / Dietary Tags</h3>
+                            <p id="recipe-detail-allergens"></p>
                         </div>
                     </div>
                     <div class="recipes-modal-buttons">
@@ -266,12 +270,14 @@ window.renderRecipesTab = function (content) {
             content.querySelector("#recipe-detail-name").textContent = recipe.name;
             content.querySelector("#recipe-detail-category").textContent = recipe.category;
             content.querySelector("#recipe-detail-cooktime").textContent = recipe.cookTime;
-            
+            content.querySelector("#recipe-detail-allergens").textContent =
+                (recipe.allergens && recipe.allergens.length) ? recipe.allergens.join(", ") : "None";
+
             const ingredientsList = content.querySelector("#recipe-detail-ingredients");
             ingredientsList.innerHTML = recipe.ingredients
                 .map(ing => `<li>${ing}</li>`)
                 .join("");
-            
+
             detailModal.style.display = "flex";
         });
     });
